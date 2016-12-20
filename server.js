@@ -36,19 +36,7 @@ app.get('/', (req, res) => {
   res.render('index.pug')
 })
 
-MongoClient.connect(mongoURL, function(err, conn) {
-  if (err) {
-    callback(err);
-    return;
-  }
-
-  db = conn;
-  dbDetails.databaseName = db.databaseName;
-  dbDetails.url = mongoURLLabel;
-  dbDetails.type = 'MongoDB';
-
-  console.log('Connected to MongoDB at: %s', mongoURL);
-})
+console.log(mongoURL)
 
 app.get('/q', (req, res) => {
   console.log(mongoURL)
