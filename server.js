@@ -40,14 +40,16 @@ console.log(mongoURL)
 
 app.get('/q', (req, res) => {
   console.log(mongoURL)
-  MongoClient.connect(`${mongoURL}/video`, (err, db) => {
-    db.collection('movies').find({
-      'title': {$regex: ('^' + req.query.name), $options: '-i'}
-    }, {'limit': 20}).toArray((err, movies) => {
-      res.json(movies)
-      db.close()
+  MongoClient.connect(`mongodb://172.30.131.33:27017/video`, (err, db) => {
+    db.authenticate('admin', 'secret', (err, result) => {
+      db.collection('movies').find({
+        'title': {$regex: ('^' + req.query.name), $options: '-i'}
+      }, {'limit': 20}).toArray((err, movies) => {
+        res.json(movies)
+        db.close()
+      })
     })
-  })
+  }
 })
 
 app.listen(port, ip);
