@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
   res.render('index.pug')
 })
 
-mongodb.connect(mongoURL, function(err, conn) {
+MongoClient.connect(mongoURL, function(err, conn) {
   if (err) {
     callback(err);
     return;
