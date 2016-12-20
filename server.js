@@ -38,7 +38,7 @@ app.get('/', (req, res) => {
 
 
 app.get('/q', (req, res) => {
-  MongoClient.connect(`mongodb://${OPENSHIFT_MONGODB_DB_HOST}:${OPENSHIFT_MONGODB_DB_PORT}/video`, (err, db) => {
+  MongoClient.connect(`mongodb://${mongoURL}:27019/video`, (err, db) => {
     db.collection('movies').find({
       'title': {$regex: ('^' + req.query.name), $options: '-i'}
     }, {'limit': 20}).toArray((err, movies) => {
