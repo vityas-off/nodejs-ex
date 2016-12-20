@@ -49,7 +49,7 @@ app.get('/q', (req, res) => {
         db.close()
       })
     })
-  }
+  })
 })
 
 app.listen(port, ip);
