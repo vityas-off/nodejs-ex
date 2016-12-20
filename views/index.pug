@@ -1,0 +1,13 @@
+html
+  head
+    title test
+    script(src='https://vuejs.org/js/vue.js')
+    script(src='https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js')
+  body
+    #app
+      input(placeholder='Введите название фильма', v-model.trim='input', @input='getMovies')
+      p(v-if='mongoAnswer.length === 0') Ничего не найдено :(
+      template(v-else-if='mongoAnswer')
+      ol
+       li(v-for='movie in mongoAnswer', :key='movie') {{ movie.title }}
+  script(src='App.js')
