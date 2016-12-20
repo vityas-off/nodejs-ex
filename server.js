@@ -38,7 +38,8 @@ app.get('/', (req, res) => {
 
 
 app.get('/q', (req, res) => {
-  MongoClient.connect(`mongodb://${mongoURL}:27019/video`, (err, db) => {
+  console.log(mongoURL)
+  MongoClient.connect(`${mongoURL}/video`, (err, db) => {
     db.collection('movies').find({
       'title': {$regex: ('^' + req.query.name), $options: '-i'}
     }, {'limit': 20}).toArray((err, movies) => {
