@@ -36,11 +36,9 @@ app.get('/', (req, res) => {
   res.render('index.pug')
 })
 
-console.log(mongoURL)
 
 app.get('/q', (req, res) => {
-  console.log(mongoURL)
-  MongoClient.connect(`mongodb://admin@secret@172.30.131.33:27017/video`, (err, db) => {
+  MongoClient.connect(mongoURL, (err, db) => {
     db.collection('movies').find({
       'title': {$regex: ('^' + req.query.name), $options: '-i'}
     }, {'limit': 20}).toArray((err, movies) => {
